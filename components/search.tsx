@@ -23,7 +23,7 @@ const formSchema = z.object({
   }),
 });
 
-export default function Search({ onSearch, setLoading }: { onSearch: (data: any[] | any) => void, setLoading: Dispatch<SetStateAction<boolean>> }) {
+export default function Search({ onSearch, setLoading, word }: { onSearch: (data: any[] | any) => void, setLoading: Dispatch<SetStateAction<boolean>>, word: string | undefined }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,8 +33,8 @@ export default function Search({ onSearch, setLoading }: { onSearch: (data: any[
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if(word && values.searchTerm === word) return 
     setLoading(true);
-    console.log(values);
     try {
       const res = await fetch(`${BASE_URL}/${values.searchTerm}`);
       const data = await res.json();

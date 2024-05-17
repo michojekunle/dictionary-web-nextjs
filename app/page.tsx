@@ -58,11 +58,13 @@ export default function Home() {
   const onSearch = (data: any[] | any) => {
     console.log(data);
     if(data?.error) {
-      console.log("data with error from page", data)
+      console.log("data with error from page", data);
+      setWordDetails([]);
       return setError(data?.error);
     }
     if(data.length > 0) {
       setError(null);
+      console.log(data);
       setWordDetails(data);
     }  
   }
@@ -81,8 +83,8 @@ export default function Home() {
         </div>
       </header>
       <main className="mt-6 md:mt-8 space-y-6 md:space-y-8">
-        <Search setLoading={setLoading} onSearch={onSearch}/>
-        <WordDetails loading={loading} error={error} wordDetails={wordDetails}/>
+        <Search setLoading={setLoading} onSearch={onSearch} word={wordDetails[0]?.word}/>
+        <WordDetails loading={loading} error={error} wordDetail={wordDetails[0]}/>
       </main>
     </ScrollArea>
   );
