@@ -24,7 +24,7 @@ const FontDropdown = ({ onFontChange } : { onFontChange: (font: string) => void 
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button className="flex items-center gap-3 outline-none pr-0" variant="link">
-          <span className="capitalize">{font}</span> 
+          <span className="capitalize font-bold">{font}</span> 
           <ChevronDown className="w-5 h-5"/>
         </Button>
       </DropdownMenuTrigger>

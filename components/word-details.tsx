@@ -144,7 +144,7 @@ const WordDetails = ({
                 {wordDetail?.meanings.map((meaning: any) => (
                   <div className="" key={meaning.partOfSpeech}>
                     <div className="flex items-center gap-3">
-                      <span className="font-bold italic text-lg">
+                      <span className="font-bold italic text-lg md:text-xl">
                         {meaning.partOfSpeech}
                       </span>
                       <Separator className="flex-1" />
@@ -168,18 +168,18 @@ const WordDetails = ({
                           </div>
                         </div>
                       ))}
-                      <div className="mt-4 space-y-2">
+                      <div className="mt-8 space-y-2">
                         {meaning.synonyms.length > 0 && (
-                          <div className="flex gap-2 italic">
-                            <span>
+                          <div className="flex gap-3 md:gap-5">
+                            <span className="opactiy-70">
                               Synonym{meaning.synonyms.length > 1 && "s"}:
                             </span>
                             {meaning.synonyms.join(", ")}
                           </div>
                         )}
                         {meaning.antonyms.length > 0 && (
-                          <div className="flex gap-2 italic">
-                            <span>
+                          <div className="flex gap-3 md:gap-5">
+                            <span className="opactiy-70">
                               Antonym{meaning.synonyms.length > 1 && "s"}:
                             </span>
                             {meaning.antonyms.join(", ")}
@@ -192,6 +192,7 @@ const WordDetails = ({
               </div>
             </div>
             <div className="mt-5">
+              <p className="font-medium">Sources</p>
               {wordDetail.sourceUrls &&
                 wordDetail.sourceUrls.map((url: string) => (
                   <Link
@@ -202,7 +203,7 @@ const WordDetails = ({
                     key={url}
                     aria-label="source url"
                   >
-                    <span className="">{url}</span>
+                    <span className="underline">{url}</span>
                     <ExternalLink className="w-4 h-4" />
                   </Link>
                 ))}
