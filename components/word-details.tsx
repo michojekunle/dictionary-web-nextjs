@@ -199,6 +199,7 @@ const WordDetails = ({
                     href={url}
                     target="_blank"
                     rel="no-referrer"
+                    key={url}
                   >
                     <span className="">{url}</span>
                     <ExternalLink className="w-4 h-4" />
