@@ -75,9 +75,6 @@ const WordDetails = ({
   if (error)
     return (
       <>
-      <pre>
-        {JSON.stringify(error, null, 2)}
-      </pre>
         {error?.server ? (
           <div className="flex flex-col gap-4 items-center text-center justify-center min-h-48">
             <p className="text-4xl md:text-7xl">🤔</p>
