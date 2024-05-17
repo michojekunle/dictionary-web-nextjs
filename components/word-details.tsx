@@ -1,6 +1,7 @@
-import { Loader, Play } from "lucide-react";
+import { ExternalLink, Loader, Play } from "lucide-react";
 import React from "react";
 import { Separator } from "./ui/separator";
+import Link from "next/link";
 
 const WordDetails = ({
   loading,
@@ -150,46 +151,60 @@ const WordDetails = ({
                     </div>
                     <div className="mt-3 space-y-2">
                       {meaning.definitions.map((definition: any, i: number) => (
-                          <div className="flex items-start" key={definition.definition ?? i}>
-                            <span className="mr-1 opacity-80 text-[7px] border rounded-full px-1 py-0.5">
-                              {i + 1}
-                            </span>
-                            <div>
-                              <p className="mb-2">{definition.definition}</p>
-                              {definition?.example && (
-                                <p className="opacity-60">
-                                  i.e. {definition.example}
-                                </p>
-                              )}
-                            </div>
+                        <div
+                          className="flex items-start"
+                          key={definition.definition ?? i}
+                        >
+                          <span className="mr-1 opacity-80 text-[7px] border rounded-full px-1 py-0.5">
+                            {i + 1}
+                          </span>
+                          <div>
+                            <p className="mb-2">{definition.definition}</p>
+                            {definition?.example && (
+                              <p className="opacity-60">
+                                i.e. {definition.example}
+                              </p>
+                            )}
                           </div>
+                        </div>
                       ))}
                       <div className="mt-4 space-y-2">
-                            {meaning.synonyms.length > 0 && (
-                              <div className="flex gap-2 italic">
-                                <span>
-                                  Synonym{meaning.synonyms.length > 1 && "s"}
-                                  :
-                                </span>
-                                {meaning.synonyms.join(", ")}
-                              </div>
-                            )}
-                            {meaning.antonyms.length > 0 && (
-                              <div className="flex gap-2 italic">
-                                <span>
-                                  Antonym{meaning.synonyms.length > 1 && "s"}
-                                  :
-                                </span>
-                                {meaning.antonyms.join(", ")}
-                              </div>
-                            )}
+                        {meaning.synonyms.length > 0 && (
+                          <div className="flex gap-2 italic">
+                            <span>
+                              Synonym{meaning.synonyms.length > 1 && "s"}:
+                            </span>
+                            {meaning.synonyms.join(", ")}
                           </div>
+                        )}
+                        {meaning.antonyms.length > 0 && (
+                          <div className="flex gap-2 italic">
+                            <span>
+                              Antonym{meaning.synonyms.length > 1 && "s"}:
+                            </span>
+                            {meaning.antonyms.join(", ")}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
+            <div className="mt-5">
+              {wordDetail.sourceUrls &&
+                wordDetail.sourceUrls.map((url: string) => (
+                  <Link
+                    className="flex gap-2 items-center hover:opacity-70 transition"
+                    href={url}
+                    target="_blank"
+                    rel="no-referrer"
+                  >
+                    <span className="">{url}</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </Link>
+                ))}
+            </div>
           </div>
         )}
       </div>
