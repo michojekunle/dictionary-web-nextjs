@@ -141,14 +141,14 @@ const WordDetails = ({
               </p>
               <div className="space-y-4">
                 {wordDetail?.meanings.map((meaning: any) => (
-                  <div className="">
+                  <div className="" key={meaning.partOfSpeech}>
                     <div className="flex items-center gap-3">
-                      <span className="font-bold italic">
+                      <span className="font-bold italic text-lg">
                         {meaning.partOfSpeech}
                       </span>
                       <Separator className="flex-1" />
                     </div>
-                    <div className="mt-3">
+                    <div className="mt-3 space-y-2">
                       {meaning.definitions.map((definition: any, i: number) => (
                           <div className="flex items-start" key={definition.definition ?? i}>
                             <span className="mr-1 opacity-80 text-[7px] border rounded-full px-1 py-0.5">
@@ -189,6 +189,7 @@ const WordDetails = ({
                 ))}
               </div>
             </div>
+
           </div>
         )}
       </div>

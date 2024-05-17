@@ -30,7 +30,7 @@ const FontDropdown = ({ onFontChange } : { onFontChange: (font: string) => void 
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {fontList.map((font) => (
-          <DropdownMenuItem onClick={() => {onFontChange(font); setFont(font);}} className="capitalize">
+          <DropdownMenuItem onClick={() => {onFontChange(font); setFont(font);}} className="capitalize" key={font}>
             {font}  
           </DropdownMenuItem>
         ))}
