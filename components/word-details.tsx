@@ -200,6 +200,7 @@ const WordDetails = ({
                     target="_blank"
                     rel="no-referrer"
                     key={url}
+                    aria-label="source url"
                   >
                     <span className="">{url}</span>
                     <ExternalLink className="w-4 h-4" />

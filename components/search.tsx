@@ -67,7 +67,7 @@ export default function Search({ onSearch, setLoading, word }: { onSearch: (data
             </FormItem>
           )}
         />
-        <Button type="submit" variant='ghost'>
+        <Button type="submit" variant='ghost' aria-label="search-btn">
           <SearchIcon />
         </Button>
       </form>

@@ -73,7 +73,7 @@ export default function Home() {
       className={`${font} min-h-screen p-4 md:py-8 container mx-auto w-full max-w-3xl flex flex-col gap-4 md:gap-8`}
     >
       <header className="flex items-center justify-between">
-        <Link href="/">
+        <Link href="/" aria-label="home-page">
           <Book className="w-10 h-10" />
         </Link>
         <div className="flex gap-3">
