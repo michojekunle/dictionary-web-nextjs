@@ -155,7 +155,7 @@ const WordDetails = ({
                           className="flex items-start"
                           key={definition.definition ?? i}
                         >
-                          <span className="mr-1 opacity-80 text-[7px] border rounded-full px-1 py-0.5">
+                          <span className="mr-1 opacity-80 text-[8px] border rounded-full px-[3px] py-0.5">
                             {i + 1}
                           </span>
                           <div>
