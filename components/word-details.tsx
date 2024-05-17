@@ -90,7 +90,15 @@ const WordDetails = ({
       <div>
         {wordDetails.length &&
           wordDetails.map((wordDetail) => (
-            <div className="">{JSON.stringify(wordDetail, null, 2)}</div>
+            <div className="">
+              // display
+              <div className="flex w-full items-center justify-between">
+                <div className="">
+
+                </div>
+              </div>
+              <div className="">{JSON.stringify(wordDetail, null, 2)}</div>
+            </div>
           ))}
       </div>
     </div>
