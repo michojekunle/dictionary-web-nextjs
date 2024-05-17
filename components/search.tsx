@@ -23,7 +23,7 @@ const formSchema = z.object({
   }),
 });
 
-export default function Search({ onSearch, setLoading }: { onSearch: (data: any[]) => void, setLoading: Dispatch<SetStateAction<boolean>> }) {
+export default function Search({ onSearch, setLoading }: { onSearch: (data: any[] | any) => void, setLoading: Dispatch<SetStateAction<boolean>> }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,19 +35,20 @@ export default function Search({ onSearch, setLoading }: { onSearch: (data: any[
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
     console.log(values);
-    const res = await fetch(`${BASE_URL}/${values.searchTerm}`);
-    const data = await res.json();
-    if(!res.ok) {
-        setLoading(false);
-        return onSearch([{ error: { server: { title: "Server Error", message: "Unable to fetch from server"}}}])
-    }
-    
-    if (data) {
-        setLoading(false);
-        return onSearch(data);
-    } else {
-        setLoading(false);
-        throw new Error("Unable to fetch data")
+    try {
+      const res = await fetch(`${BASE_URL}/${values.searchTerm}`);
+      const data = await res.json();
+      if(!res.ok) {
+          console.log(data);
+          setLoading(false);
+          return onSearch({ error: { ...data } })
+      } else if (data) {
+          setLoading(false);
+          return onSearch(data);
+      }
+    } catch (error) {
+      setLoading(false);
+      return onSearch({ error: { server: { title: "Server Error", message: "Unable to fetch from server, could not reach dictionary server, check internet connection"}}})
     }
 
   }
@@ -61,7 +62,7 @@ export default function Search({ onSearch, setLoading }: { onSearch: (data: any[
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl className="w-full border-none outline-none">
-                <Input placeholder="Search for anything..." {...field} className="border-none outline-none w-full p-2 bg-none"/>
+                <Input placeholder="Search for anything..." {...field} className="border-none outline-none w-full p-2 bg-none" autoComplete="on" autoCorrect="on" spellCheck/>
               </FormControl>
             </FormItem>
           )}

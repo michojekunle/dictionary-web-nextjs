@@ -26,7 +26,7 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: ["100", "300", "400"
 
 export default function Home() {
   const [font, setFont] = useState(roboto.className);
-  const [wordDetails, setWordDetails] = useState<any[]>([]);
+  const [wordDetails, setWordDetails] = useState<any[] | any>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(null);
 
@@ -55,12 +55,14 @@ export default function Home() {
     }
   };
 
-  const onSearch = (data: any[]) => {
-    if(data[0]?.error) {
-      return setError(data[0]?.error);
+  const onSearch = (data: any[] | any) => {
+    console.log(data);
+    if(data?.error) {
+      console.log("data with error from page", data)
+      return setError(data?.error);
     }
     if(data.length > 0) {
-      setError(false);
+      setError(null);
       setWordDetails(data);
     }  
   }

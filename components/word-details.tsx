@@ -75,20 +75,30 @@ const WordDetails = ({
   if (error)
     return (
       <>
-        {error?.server && (
+      <pre>
+        {JSON.stringify(error, null, 2)}
+      </pre>
+        {error?.server ? (
           <div className="flex flex-col gap-4 items-center text-center justify-center min-h-48">
             <p className="text-4xl md:text-7xl">🤔</p>
             <p className="text-xl">{error?.server?.title}</p>
             <p className="text-sm">{error?.server?.message}</p>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-4 items-center text-center justify-center min-h-48">
+            <p className="text-4xl md:text-7xl">🤔</p>
+            <p className="text-xl">{error?.title}</p>
+            <p className="text-sm">{error?.message}</p>
+            <p className="text-sm">{error?.resolution}</p>
           </div>
         )}
       </>
     );
 
   return (
-    <div className="">
-      <div>
-        {wordDetails.length &&
+    <div className="w-full">
+      <div className="w-full">
+        {wordDetails.length > 0 &&
           wordDetails.map((wordDetail) => (
             <div className="">
               // display
@@ -97,7 +107,11 @@ const WordDetails = ({
 
                 </div>
               </div>
-              <div className="">{JSON.stringify(wordDetail, null, 2)}</div>
+              <div className="w-full p-5">
+                <pre className="w-52 overflow-scroll">
+                  {JSON.stringify(wordDetail, null, 2)}
+                </pre>
+              </div>
             </div>
           ))}
       </div>
